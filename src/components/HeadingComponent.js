@@ -13,18 +13,20 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 
   return(
-    <div className="header-container">
-  <img className="App-logo" src={LOGO_URL}></img>
+    <div className="flex justify-between bg-orange-100 shadow-md">
+     <div className="logo-container">
+     <img className="w-28" src={LOGO_URL}></img>
+      </div> 
 
     <div className="nav-items">
-         <ul>
-          <li>Onlinestatus:{onlineStatus ? "✅" : "🔴"}</li>
-         <Link to ={'/'}>Home</Link>
-         <Link to="/About" style={{textDecoration: "none"}}>About US</Link>
-         <Link to="/Contact" style={{textDecoration: "none"}}>Contact US</Link>
-         <li>Cart</li>
-         <Link to="/Grocery">Grocery</Link>
-         <button className="login-btn" onClick={() => btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")}>{btnName}</button>
+         <ul className="flex p-4 m-4">
+          <li className="px-2">Onlinestatus:{onlineStatus ? "✅" : "🔴"}</li>
+         <li className="px-2"><Link to ={'/'}>Home</Link></li> 
+        <li className="px-2"><Link to="/About" style={{textDecoration: "none"}}>About US</Link></li>
+       <li className="px-2"> <Link to="/Contact" style={{textDecoration: "none"}}>Contact US</Link></li>  
+         <li className="px-2">Cart</li>
+        <li className="px-2"><Link to="/Grocery">Grocery</Link> </li> 
+         <button className="px-2 shadow-xl" onClick={() => btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")}>{btnName}</button>
          </ul>
     </div>
     </div>   
