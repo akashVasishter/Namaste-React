@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { restaurantList } from "../utils/Data";
 import RestaurantCard, { WithPromotedLabel } from "./RestaurantCard";
 import ShimmerUi from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurants from "../utils/useRestaurants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
  const BodyComponent = () => {
@@ -20,6 +21,7 @@ const [filteredRestaurant, setFilteredRestaurant] = useRestaurants();
 const RestaurantIsPromoted = WithPromotedLabel(RestaurantCard);
 console.log(listOfRestaurant);
 
+const {loggedInUser,setUserName} = useContext(UserContext);
 
 if(onlineStatus === false){
 
@@ -46,6 +48,14 @@ if(onlineStatus === false){
                    Top Rated Restaurant 
                    </button>
                </div>
+              
+              <div className="placeholder p-4 m-2 flex items-center">
+              <label>UserName: 
+                <input type="placeholder" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>
+              </label>
+              </div>
+
+
                </div>
 
         <div className="restaurant-container flex flex-wrap justify-center">
