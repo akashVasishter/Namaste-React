@@ -8,6 +8,9 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/cart";
 
 //Lazy Loading:
 //Dynamic import
@@ -36,10 +39,12 @@ setUserName(data.name)
 return(
 
      <div className="app">
+      <Provider store={appStore}>
   <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
      <HeadingComponent/>
      <Outlet/>
   </UserContext.Provider>
+  </Provider>
      </div>
 )  
 };
@@ -80,6 +85,11 @@ const appRouter = createBrowserRouter([
           </Suspense>
           ),
         },
+
+        {
+          path: "/cart",
+          element:<Cart/>
+        }
     ],
     errorElement: <Error />,
   },

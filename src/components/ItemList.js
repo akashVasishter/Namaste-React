@@ -1,12 +1,26 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addCart, removeCart } from "../utils/cartSlice";
 
 
 const ItemList = ({itemData}) => {
 
 console.log(itemData);
 
+const dispatch = useDispatch();
+
+//adding items to our redux store
+const addHandler = (item) => {
+
+  dispatch(addCart(item));
+
+}
 
 
+const removeHandler = (item) => {
+
+  dispatch(removeCart(item))
+}
 
     return(
 
@@ -20,9 +34,11 @@ console.log(itemData);
                 <p className="text-xs">{item?.card?.info?.description}</p>
                 </div>
                 <div className="w-3/12 p-4">
-                <div className="absolute">
-                <button className="mx-16 p-2 rounded-lg bg-slate-50  shadow-lg">Add +</button>
+                <div className="absolute flex">
+                <button className="mx-16 p-2 rounded-lg bg-slate-50  shadow-lg" onClick={() => {addHandler(item)}}>Add +</button>
+                <button className="mx-16 p-2 rounded-lg bg-slate-50  shadow-lg" onClick={() => removeHandler(item)}>Remove -</button>
                 </div>
+                
                 <div>
                 <img src={CDN_URL +item?.card?.info?.imageId} className="w-full"/>  
                 </div>
